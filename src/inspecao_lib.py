@@ -1,7 +1,6 @@
 import requests
 import os
 import re
-from datetime import datetime
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from urllib.parse import urlparse, parse_qs
@@ -25,20 +24,27 @@ def download_file(url, download_path, file_name=''):
         file_path = download_path    
 
     try:
-        print('Iniciando o download em: ' + file_path)
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        
         #Create path, if not exists
+        print('Criando o diretório: ' + download_path)
         directory = Path(download_path) #Create path object
         if not directory.exists():
-            directory.mkdir(parents=True, exist_ok=True)    
-      
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
-        print("File downloaded successfully: " + file_name)
-        # write_log("File downloaded successfully: " + save_as, save_as)
-        return True
+            directory.mkdir(parents=True, exist_ok=True)  
+        
+        if isinstance(url, str):
+            list_url = [url]
+        else:
+            list_url = url    
+
+        for item_url in list_url:
+            print('Iniciando o download em: ' + file_path)
+            response = requests.get(item_url)
+            response.raise_for_status()  # Raise an exception for HTTP errors
+        
+            with open(file_path, 'wb') as file:
+                file.write(response.content)
+            print("File downloaded successfully: " + file_name)
+            # write_log("File downloaded successfully: " + save_as, save_as)
+            return True
     except requests.exceptions.RequestException as e:
         print(f"Error downloading file: {e}")
         return False
@@ -91,9 +97,13 @@ def extract_file_name_url(url):
     parsed_url = urlparse(url)
     query_params = parse_qs(parsed_url.query)
     download_url = query_params.get('gf-download')
-    download_url = download_url[0]
-    return download_url.split('/')[-1]
-
+    # Check if download_url is not None before accessing its elements
+    if download_url:
+        download_url = download_url[0]
+        return download_url.split('/')[-1]
+    else:
+        return "falha_nome_arquivo.pdf"
+    
 # Create a dir using pathlib library
 def create_dir(path):
     try:
@@ -101,5 +111,6 @@ def create_dir(path):
         if not directory.exists():
             directory.mkdir(parents=True, exist_ok=True)
         return True    
-    except:
+    except Exception as e:
+        print(e)
         return False
