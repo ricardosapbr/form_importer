@@ -1,6 +1,3 @@
-import time
-from datetime import datetime
-import requests
 import pandas as pd
 import os
 import sys
@@ -10,39 +7,48 @@ from pathlib import Path
 import inspecao_lib
 import form_presidencia
 
-# Setting a folder to download form files
-links_file = r"\\fluor02\Corregedoria\_Restrito\Automacao\form_inspecao\links_formularios.txt"
-user_folder = os.path.join(os.path.expanduser('~'), 'Documents')
-
+# Define quais registros de inspeção serão baixados
 cod_acesso = inspecao_lib.show_input_box('Informe o código da inspeção (Senha do Formulário)')
 cod_acesso = cod_acesso.upper()
+
+# Setting a folder to download form files
+user_folder = os.path.join(os.path.expanduser('~'), 'Documents')
+cache_folder = user_folder + r"\Arquivos Formulários de Inspeção"
+
+url_links = 'https://formularios-corregedoria.cnj.jus.br/wp-content/uploads/2024/05/links_formularios_inspecao.txt'
+inspecao_lib.download_file(url_links, cache_folder,'links_formularios_inspecao.txt')
+links_file = user_folder + r"\Arquivos Formulários de Inspeção" + r"\links_formularios_inspecao.txt"
+
+# Links de teste
+#links_file = user_folder + r"\teste_link_form.txt"
+#links_file = user_folder + r"\links_formularios_inspecao.txt"
 
 if cod_acesso == '':
     #inspecao_lib.show_message_box('Informe um código de inspeção!')
     sys.exit('ERRO: Informe um código de inspeção!')
  
-default_folder = r"\Arquivos Formulários de Inspeção" + '\\' + cod_acesso
-cache_folder = user_folder + default_folder
+inspecao_folder = cache_folder + '\\' + cod_acesso
 
 #Create path object
-inspecao_lib.create_dir(cache_folder)
+inspecao_lib.create_dir(inspecao_folder)
 
 #Get all forms registry and save in cache_folder
-df_forms = pd.read_csv(links_file) # Get the links to download form entries in Excel and other informations
+df_forms = pd.read_csv(links_file) # Read file with all links to access form entries in excel
 
 for row in df_forms.itertuples():
     url = row.link # Url of form entries
     file_name = str(row.indice).zfill(2) + '.' + row.unidade + '.xlsx' # Given name do Excel form entries
         
     # Download each Excel form entries in cache_folder
-    if inspecao_lib.download_file(url, cache_folder, file_name) == True: 
+    if inspecao_lib.download_file(url, inspecao_folder, file_name) == True: 
         # Set the parameters to get pdf form and handle data of each forms
-        file_path = cache_folder + '\\' + file_name
+        file_path = inspecao_folder + '\\' + file_name
         unidade = str(row.indice).zfill(2) + '.' + row.unidade
-        form_presidencia.get_files_form(cache_folder, file_path, unidade, row.cod_pdf, cod_acesso)
+        form_presidencia.get_files_form(inspecao_folder, file_path, unidade, row.cod_pdf, cod_acesso)
     else:
         print('INFO: Falha ao baixar arquivo de registros do formulário')
 
-print('ARQUIVOS BAIXADOS COM SUCESSO EM: ' + cache_folder)   
+print('ARQUIVOS BAIXADOS COM SUCESSO EM: ' + inspecao_folder)
+input('Tecle enter para fechar o importador.')  
 
 
