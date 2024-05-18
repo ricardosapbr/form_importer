@@ -5,7 +5,7 @@ from pathlib import Path
 
 # Project Files
 import inspecao_lib
-import form_presidencia
+import inspecao_importer
 
 # Define quais registros de inspeção serão baixados
 cod_acesso = inspecao_lib.show_input_box('Informe o código da inspeção (Senha do Formulário)')
@@ -44,7 +44,7 @@ for row in df_forms.itertuples():
         # Set the parameters to get pdf form and handle data of each forms
         file_path = inspecao_folder + '\\' + file_name
         unidade = str(row.indice).zfill(2) + '.' + row.unidade
-        form_presidencia.get_files_form(inspecao_folder, file_path, unidade, row.cod_pdf, cod_acesso)
+        inspecao_importer.get_files_form(inspecao_folder, file_path, unidade, row.cod_pdf, cod_acesso)
     else:
         print('INFO: Falha ao baixar arquivo de registros do formulário')
 
