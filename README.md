@@ -9,7 +9,8 @@
 
 ## Uso do script:
 1. Gerar um executável usando o pyinstaller (pip install pyinstaller ou conda install pyinstaller);
-2. Comando do gerado de executável: pyinstaller --onefile --hidden-import openpyxl.cell._writer inspecao_main.py;
-3. A opção --hidden-import importa o pacote não visível no script openpyxl.cell._writer.
+2. Comando do gerador de executável: `pyinstaller --onefile --hidden-import openpyxl.cell._writer inspecao_main.py`;
+3. A opção --hidden-import importa o pacote não visível no script openpyxl.cell._writer
+4. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/).
 
 
