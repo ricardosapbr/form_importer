@@ -6,6 +6,8 @@
 3. Faz o download do arquivo **links_formularios_inspecao.txt** que contém os links de download das entradas do formulário informado no passo 1;
 4. Cria uma pasta de cada formulário em uma pasta de mesmo nome do código de inspeção informado;
 5. Baixa todos os formulários, em formato pdf, e seus anexos dentro de cada pasta de formulário;
+![folders](assets/folders.jpg)
+*Exemplo de estrutura de diretórios criada.*
 
 ## Uso do script:
 1. Gerar um executável usando o pyinstaller (pip install pyinstaller ou conda install pyinstaller);
