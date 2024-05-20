@@ -37,12 +37,12 @@ df_forms = pd.read_csv(links_file) # Read file with all links to access form ent
 
 for row in df_forms.itertuples():
     url = row.link # Url of form entries
-    file_name = str(row.indice).zfill(2) + '.' + row.unidade + '.xlsx' # Given name do Excel form entries
+    file_name = str(row.indice).zfill(2) + '.' + row.unidade + '.xlsx' # Given name for Excel form entries
         
     # Download each Excel form entries in cache_folder
-    if inspecao_lib.download_file(url, inspecao_folder, file_name) == True: 
+    if inspecao_lib.download_file(url, cache_folder, file_name) == True: 
         # Set the parameters to get pdf form and handle data of each forms
-        file_path = inspecao_folder + '\\' + file_name
+        file_path = cache_folder + '\\' + file_name
         unidade = str(row.indice).zfill(2) + '.' + row.unidade
         inspecao_importer.get_files_form(inspecao_folder, file_path, unidade, row.cod_pdf, cod_acesso)
     else:

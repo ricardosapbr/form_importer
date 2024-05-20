@@ -9,6 +9,20 @@ import re
 from inspecao_lib import download_file, show_input_box,sanitize_file_name, extract_file_name_url, create_dir
 
 def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
+    """
+    Baixa arquivos PDF e seus anexos com base nas entradas do formulário em arquivo Excel e parâmetros fornecidos.
+
+    Args:
+        cache_folder (str): O diretório base para os arquivos excel com as entradas do formulário.
+        excel_file_path (str): O caminho para o arquivo Excel contendo os dados do formulário.
+        unidade (str): O valor usado para criar a pasta de download.
+        cod_pdf (str): O código usado para determinar o caminho do arquivo PDF do formulário.
+        cod_inspec (str): O código de inspeção usado para filtrar os dados no arquivo Excel.
+
+    Raises:
+        FileNotFoundError: Se o arquivo Excel não for encontrado no caminho especificado.
+
+    """
     
     #Define a folder to download form in pdf in created folder named with value of 'unidade'
     download_path =  cache_folder + '\\' + unidade + '\\'
