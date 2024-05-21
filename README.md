@@ -15,4 +15,20 @@
 3. A opção --hidden-import importa o pacote não visível no script openpyxl.cell._writer
 4. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/).
 
+## Links para os formulários
+1. [Presidência](https://formularios-corregedoria.cnj.jus.br/01-inspecao-ordinaria-presidencia/)
+2. [Vice-Presidência](https://formularios-corregedoria.cnj.jus.br/02-inspecao-ordinaria-vice-presidencia/)
+3. [Presidência de Sessões](https://formularios-corregedoria.cnj.jus.br/03-inspecao-ordinaria-presidencia-de-sessoes/)
+4. [Gabinete de Desembargador(a)](https://formularios-corregedoria.cnj.jus.br/04-inspecao-ordinaria-gabinete-de-desembargador/)
+5. [Gabinete de Desembargador(a) Presidente](https://formularios-corregedoria.cnj.jus.br/05-inspecao-ordinaria-gabinete-de-desembargador-presidente/)
+6. [Gabinete de Desembargador(a) Vice-Presidente](https://formularios-corregedoria.cnj.jus.br/06-inspecao-ordinaria-gabinete-de-desembargador-vice-presidente/)
+7. [Corregedoria](https://formularios-corregedoria.cnj.jus.br/07-inspecao-ordinaria-corregedoria/)
+8. [Gabinete Desembargador(a) Corregedor(a)](https://formularios-corregedoria.cnj.jus.br/08-inspecao-ordinaria-gabinete-de-desembargador-corregedor/)
+9. [Precatórios](https://formularios-corregedoria.cnj.jus.br/09-inspecao-ordinaria-precatorios/)
+10. [Concurso Público Extrajudicial](https://formularios-corregedoria.cnj.jus.br/10-inspecao-ordinaria-concurso-publico-outorga-de-delegacoes-de-notas-e-registro-e-listas-de-vacancias/)
+11. [Secretarias Judiciárias 2º Grau](https://formularios-corregedoria.cnj.jus.br/11-inspecao-ordinaria-secretarias-judiciarias-processuais-de-2o-grau/)
+12. [Serventias Extrajudiciais](https://formularios-corregedoria.cnj.jus.br/12-inspecao-ordinaria-serventias-extrajudiciais/)
+13. [Unidades de 1º Grau](https://formularios-corregedoria.cnj.jus.br/13-inspecao-ordinaria-unidades-de-primeiro-grau-varas/)
+14. [Administrativo](https://formularios-corregedoria.cnj.jus.br/14-inspecao-ordinaria-unidades-administrativas/)
+15. [Tecnologia da Informação](https://formularios-corregedoria.cnj.jus.br/15-inspecao-ordinaria-tecnologia-da-informacao/)
 
