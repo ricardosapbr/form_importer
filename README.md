@@ -18,9 +18,10 @@
 ## Uso do script:
 1. Gerar um executável usando o pyinstaller;
 2. Comando do gerador de executável: `pyinstaller --onefile --clean --hidden-import openpyxl --hidden-import openpyxl.cell._writer --hidden-import pkg_resources.extern --distpath 'C:\path\to\dir' inspecao_main.py`;
-3. A opção --hidden-import importa os pacotes não visíveis no script;
-4. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/);
-5. Para geração do executável, recomenda-se criar um virtual environment com a instalção padrão do Python e adicionar os pacotes acima indicados. Isso reduz drasticamente o tamanho do executável, pois evita-se a importação de bibliotecas desnecessárias.
+3. O executável será gerado no caminho indicado em --distpath 'C:\path\to\dir' do comando, ou na pasta do script(default);
+4. A opção --hidden-import importa os pacotes não visíveis no script;
+5. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/);
+6. Para geração do executável, recomenda-se criar um virtual environment com a instalção padrão do Python e adicionar os pacotes acima indicados. Isso reduz drasticamente o tamanho do executável, pois evita-se a importação de bibliotecas desnecessárias.
 
 ## Links para os formulários
 1. [Presidência](https://formularios-corregedoria.cnj.jus.br/01-inspecao-ordinaria-presidencia/)
