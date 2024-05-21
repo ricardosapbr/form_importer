@@ -45,6 +45,7 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
     if len(filter_df) > 0:
         for index, row in filter_df.iterrows():
             id_entrada = str(row.id_entrada)
+            nome_unidade = str(row.iloc[9])
 
             # In code below, row..iloc[] is the index of column 'Unidade inspecionada'
             match cod_pdf:
@@ -53,19 +54,19 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
                 case '65270e3454ce2':  # 02.Vice-Presidência
                     file_name = 'Formulário Vice-Presidência - ' + id_entrada + '.pdf'
                 case '65270edd68479': # 03.Presidência de Sessões
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '65270f2475acd': # 04.Gabinete de Desembargador
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '65270f77e965f': # 05.Gabinete de Desembargador Presidente
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '65270fc85fbd4': # 06.Gabinete de Desembargador Vice-Presidente
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '6527100f143d4': # 07.Corregedoria
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '663e764bdf295': # 08.Desemb. Corregedor
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '6527104195a66': # 09.Precatórios
-                    file_name = 'Formulário' + ' - ' + row.iloc[9] + ' - ' + id_entrada + '.pdf'
+                    file_name = 'Formulário' + ' - ' + nome_unidade + ' - ' + id_entrada + '.pdf'
                 case '652710d67fbd9': # 10.Outorga delegações - extrajudicial
                     file_name = 'Formulário Outorga Delegações' + ' - ' + id_entrada + '.pdf'
                 case '6527108a86e59': # 11.Secretarias 2Grau

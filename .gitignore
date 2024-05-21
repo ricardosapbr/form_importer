@@ -168,3 +168,4 @@ src/inspecao/Scripts/pip3.exe
 src/inspecao/Scripts/python.exe
 src/inspecao/Scripts/pythonw.exe
 src/inspecao/pyvenv.cfg
+.conda/Library/bin/libssl-3-x64.dll.conda_trash
