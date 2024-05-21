@@ -9,11 +9,18 @@
 ![folders](assets/folders.jpg)
 *Exemplo de estrutura de diretórios criada.*
 
+## Pacotes Python necessários:
+1. Pandas `pip install pandas`;
+2. Requests `pip install requests`;
+3. Openpyxl `pip install openpyxl`;
+4. Pyinstaller `pip install pyinstaller`.
+
 ## Uso do script:
 1. Gerar um executável usando o pyinstaller (pip install pyinstaller ou conda install pyinstaller);
-2. Comando do gerador de executável: `pyinstaller --onefile --hidden-import openpyxl.cell._writer inspecao_main.py`;
+2. Comando do gerador de executável: `pyinstaller --onefile --clean --hidden-import openpyxl --hidden-import openpyxl.cell._writer --hidden-import pkg_resources.extern --distpath 'C:\Users\ricardo.silva\Documents\Python Scripts\Dists' inspecao_main.py`;
 3. A opção --hidden-import importa o pacote não visível no script openpyxl.cell._writer
-4. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/).
+4. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/);
+5. Para geração do executável, recomenda-se criar um virtual environment com a instalção padrão do Python e adicionar os pacotes acima indicados. Isso reduz drasticamente o tamanho do executável, pois evita-se a importação de bibliotecas desnecessárias.
 
 ## Links para os formulários
 1. [Presidência](https://formularios-corregedoria.cnj.jus.br/01-inspecao-ordinaria-presidencia/)
