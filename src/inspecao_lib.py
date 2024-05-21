@@ -26,10 +26,8 @@ def download_file(url, download_path, file_name=''):
     try:
         #Create path, if not exists
         print('Criando o diretório: ' + download_path)
-        directory = Path(download_path) #Create path object
-        if not directory.exists():
-            directory.mkdir(parents=True, exist_ok=True)  
-        
+        create_dir(download_path)
+                
         if isinstance(url, str):
             list_url = [url]
         else:
