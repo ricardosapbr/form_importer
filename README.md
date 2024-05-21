@@ -16,8 +16,8 @@
 4. Pyinstaller `pip install pyinstaller`.
 
 ## Uso do script:
-1. Gerar um executável usando o pyinstaller (pip install pyinstaller ou conda install pyinstaller);
-2. Comando do gerador de executável: `pyinstaller --onefile --clean --hidden-import openpyxl --hidden-import openpyxl.cell._writer --hidden-import pkg_resources.extern --distpath 'C:\Users\ricardo.silva\Documents\Python Scripts\Dists' inspecao_main.py`;
+1. Gerar um executável usando o pyinstaller;
+2. Comando do gerador de executável: `pyinstaller --onefile --clean --hidden-import openpyxl --hidden-import openpyxl.cell._writer --hidden-import pkg_resources.extern --distpath 'C:\path\to\dir' inspecao_main.py`;
 3. A opção --hidden-import importa o pacote não visível no script openpyxl.cell._writer
 4. Verificar outras opções do pyinstaller em [PyInstaller Manual](https://pyinstaller.org/en/stable/);
 5. Para geração do executável, recomenda-se criar um virtual environment com a instalção padrão do Python e adicionar os pacotes acima indicados. Isso reduz drasticamente o tamanho do executável, pois evita-se a importação de bibliotecas desnecessárias.
