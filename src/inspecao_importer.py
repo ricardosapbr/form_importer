@@ -89,13 +89,24 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
             download_file('https://formularios-corregedoria.cnj.jus.br/pdf/' + cod_pdf + '/' + id_entrada + r"/download/", download_path, file_name)
 
             #Download all files atached in forms
-            pattern = r'\d+\.\d+'
+            pattern_n1 = r'\d+\.\d+'
+            pattern_n2 = r'^.*(?=\.)'
+            item_header = ''
             for field_name, field_value in row.items():
-                matches = re.findall(pattern, field_name)
-                dir_name = 'não_numerado'
-                if len(matches)>=1:
-                    dir_name = 'Anexo_Item_' + matches[0]
+                dir_name = 'ND'
+                matches_n1 = re.findall(pattern_n1, field_name)                
+                if len(matches_n1)>=1:
+                    item_n1 = matches_n1[0]
+                    item_header = item_n1
+                    #print(f'Item principal: {item_header}')
+                    dir_name = 'Anexo_Item_' + item_n1
+                                   
+                matches_n2 = re.findall(pattern_n2, field_name)
+                if (len(matches_n2)>=1) and (len(matches_n1)==0):
+                    dir_name = f'Anexo_Item_{item_header}_{matches_n2[0][0:30]}'
+
                 file_sub_path = os.path.join(download_path, dir_name)
+                #print(f'Pasta anexos: {file_sub_path}')
                 
                 search_string = 'https://formularios-corregedoria.cnj.jus.br/index.php?gf-download'
                 multi_files_str = 'Múltiplos arquivos:'
