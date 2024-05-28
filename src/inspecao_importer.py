@@ -89,8 +89,8 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
             download_file('https://formularios-corregedoria.cnj.jus.br/pdf/' + cod_pdf + '/' + id_entrada + r"/download/", download_path, file_name)
 
             #Download all files atached in forms
-            pattern_n1 = r'\d+\.\d+'
-            pattern_n2 = r'^.*(?=\.)'
+            pattern_n1 = r'^\d+\.\d+'
+            pattern_n2 = r'^[^.]*\.'
             item_header = ''
             for field_name, field_value in row.items():
                 dir_name = 'ND'
