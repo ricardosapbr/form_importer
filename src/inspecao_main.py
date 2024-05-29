@@ -49,6 +49,7 @@ for row in df_forms.itertuples():
         print('INFO: Falha ao baixar arquivo de registros do formulário')
 
 print('ARQUIVOS BAIXADOS COM SUCESSO EM: ' + inspecao_folder)
+inspecao_lib.table.display()
 input('Tecle enter para fechar o importador.')  
 
 

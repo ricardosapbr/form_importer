@@ -5,7 +5,47 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 from urllib.parse import urlparse, parse_qs
 from pathlib import Path
+from tabulate import tabulate
 
+class Table:
+    def __init__(self, headers, colalign=None):
+        """
+        Initialize the table with headers and optional column alignment.
+
+        :param headers: List of column headers
+        :param colalign: List of alignments for each column (default is None)
+        """
+        self.headers = headers
+        self.data = []
+        self.colalign = colalign if colalign else ['center'] * len(headers)
+
+    def add_row(self, row):
+        """
+        Add a row to the table.
+
+        :param row: List of row values
+        """
+        if len(row) != len(self.headers):
+            raise ValueError("Row length does not match headers length.")
+        self.data.append(row)
+
+    def display(self, table_format="pretty"):
+        """
+        Display the table in the console.
+
+        :param table_format: String format for the table (default is "pretty")
+        """
+        print()
+        print(tabulate(self.data, headers=self.headers, tablefmt=table_format, colalign=self.colalign))
+
+    def get_table_str(self, table_format="pretty"):
+        """
+        Get the table as a string.
+
+        :param table_format: String format for the table (default is "pretty")
+        :return: String representation of the table
+        """
+        return tabulate(self.data, headers=self.headers, tablefmt=table_format, colalign=self.colalign)
 
 # Download file in given url
 def download_file(url, download_path, file_name=''):
@@ -112,3 +152,6 @@ def create_dir(path):
     except Exception as e:
         print(e)
         return False
+    
+# Singleton Instance
+table = Table(["Unidade", "Formulário Enviados"], colalign=['left', 'center'])

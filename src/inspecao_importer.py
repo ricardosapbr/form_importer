@@ -3,10 +3,9 @@ import os
 import re
 
 
-
-
 # Project Files
-from inspecao_lib import download_file, show_input_box,sanitize_file_name, extract_file_name_url, create_dir
+from inspecao_lib import download_file, sanitize_file_name, extract_file_name_url, create_dir, table
+
 
 def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
     """
@@ -36,10 +35,10 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
     else:
         print('Erro na leitura dos registros do formulário.')
 
-#'Unidade inspecionada':'unidade_inspecionada'
     # Filter rows by cod_inspecao
     filter_df = df_form[df_form['cod_inspecao'] == cod_inspec]
     print('Total de registros encontrados: ' + str(len(filter_df)))
+    table.add_row([unidade, str(len(filter_df))])
 
     # Download form pdf by looping over a dataframe and handle form's data for each form
     if len(filter_df) > 0:
@@ -92,18 +91,21 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
             pattern_n1 = r'^\d+\.\d+'
             pattern_n2 = r'^[^.]*\.'
             item_header = ''
+            
             for field_name, field_value in row.items():
                 dir_name = 'ND'
-                matches_n1 = re.findall(pattern_n1, field_name)                
+
+                matches_n1 = re.findall(pattern_n1, field_name)
                 if len(matches_n1)>=1:
                     item_n1 = matches_n1[0]
                     item_header = item_n1
                     #print(f'Item principal: {item_header}')
-                    dir_name = 'Anexo_Item_' + item_n1
+                    dir_name = f'Anexo_Item_{item_n1}'
                                    
                 matches_n2 = re.findall(pattern_n2, field_name)
                 if (len(matches_n2)>=1) and (len(matches_n1)==0):
-                    dir_name = f'Anexo_Item_{item_header}_{matches_n2[0][0:30]}'
+                    item_n2 = matches_n2[0]
+                    dir_name = f'Anexo_Item_{item_header}_{item_n2}'
 
                 file_sub_path = os.path.join(download_path, dir_name)
                 #print(f'Pasta anexos: {file_sub_path}')
