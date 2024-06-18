@@ -83,6 +83,7 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
 
             # Replace invalid character form windows file name
             file_name = sanitize_file_name(file_name)
+            form_name = '.'.join(file_name.split('.')[:-1])
 
             # download a form in pdf file
             download_file('https://formularios-corregedoria.cnj.jus.br/pdf/' + cod_pdf + '/' + id_entrada + r"/download/", download_path, file_name)
@@ -127,6 +128,6 @@ def get_files_form(cache_folder, excel_file_path, unidade, cod_pdf, cod_inspec):
                         print('url for extract_name = ' + item_url)
                         file_name = extract_file_name_url(item_url) # Extract file name from givem url
                         try:
-                            download_file(item_url, file_sub_path, file_name)
+                            download_file(item_url, file_sub_path, f'{form_name}_{file_name}')
                         except:
                             continue

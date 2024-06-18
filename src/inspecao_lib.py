@@ -6,6 +6,7 @@ from tkinter import simpledialog, messagebox
 from urllib.parse import urlparse, parse_qs
 from pathlib import Path
 from tabulate import tabulate
+from tqdm import tqdm
 
 class Table:
     def __init__(self, headers, colalign=None):
@@ -77,11 +78,18 @@ def download_file(url, download_path, file_name=''):
             print('Iniciando o download em: ' + file_path)
             response = requests.get(item_url)
             response.raise_for_status()  # Raise an exception for HTTP errors
+
+            total_size = int(response.headers.get('content-length', 0))
+            block_size = 1024  # 1 KB
+            progress_bar = tqdm(total=total_size, unit='B', unit_scale=True)
         
             with open(file_path, 'wb') as file:
-                file.write(response.content)
+                for data in response.iter_content(block_size):
+                    progress_bar.update(len(data))
+                    file.write(data)
+                # file.write(response.content)
             print("File downloaded successfully: " + file_name)
-            # write_log("File downloaded successfully: " + save_as, save_as)
+            progress_bar.close()
             return True
     except requests.exceptions.RequestException as e:
         print(f"Error downloading file: {e}")
